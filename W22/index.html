@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PICT Mobile Site</title>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+  <div data-role="page" id="home">
+    <div data-role="header"><h1>PICT</h1></div>
+    <div data-role="content">
+      <p>Welcome to Pune Institute of Computer Technology.</p>
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#about" data-transition="slide">About Us</a></li>
+          <li><a href="#courses" data-transition="slide">Courses</a></li>
+          <li><a href="#depts" data-transition="slide">Departments</a></li>
+          <li><a href="#contact" data-transition="slide">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div data-role="page" id="about">
+    <div data-role="header"><a href="#home" data-icon="back">Back</a><h1>About Us</h1></div>
+    <div data-role="content">
+      <p>PICT is known for quality education and strong placements.</p>
+      <div data-role="collapsible">
+        <h4>Vision</h4>
+        <p>Learn, innovate, and lead.</p>
+      </div>
+    </div>
+  </div>
+
+  <div data-role="page" id="courses">
+    <div data-role="header"><a href="#home" data-icon="back">Back</a><h1>Courses</h1></div>
+    <div data-role="content">
+      <ul data-role="listview">
+        <li>B.E. Computer</li>
+        <li>B.E. IT</li>
+        <li>B.E. Electronics</li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="page" id="depts">
+    <div data-role="header"><a href="#home" data-icon="back">Back</a><h1>Departments</h1></div>
+    <div data-role="content">
+      <ul data-role="listview">
+        <li>Computer Engineering</li>
+        <li>Information Technology</li>
+        <li>Electronics & Telecommunication</li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="page" id="contact">
+    <div data-role="header"><a href="#home" data-icon="back">Back</a><h1>Contact</h1></div>
+    <div data-role="content">
+      <p>PICT, Pune</p>
+      <p>Phone: 020-123456</p>
+      <p>Email: info@pict.edu</p>
+    </div>
+  </div>
+</body>
+</html>

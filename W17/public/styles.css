@@ -1,0 +1,6 @@
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f6f7f9; }
+.page { max-width: 800px; margin: 24px auto; padding: 0 16px 24px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.card { background: #fff; border: 1px solid #ddd; padding: 10px; text-align: center; }
+.card img { width: 80px; height: 80px; object-fit: cover; }

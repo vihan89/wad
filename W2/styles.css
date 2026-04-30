@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #f6f7f9;
+  color: #222;
+}
+.page {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px 24px;
+}
+.hero {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 16px;
+}
+section { margin-top: 20px; }
+.list { padding-left: 18px; }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+th, td { padding: 8px; border-bottom: 1px solid #eee; text-align: left; }

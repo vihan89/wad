@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #fff8f0;
+  color: #222;
+}
+.page {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px 24px;
+}
+.welcome { font-weight: bold; }
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+th, td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
+img { width: 70px; height: 70px; object-fit: cover; }

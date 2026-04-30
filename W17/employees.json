@@ -1,0 +1,5 @@
+[
+  { "name": "Aditi", "designation": "Developer", "department": "IT", "salary": 55000, "image": "https://via.placeholder.com/80?text=A" },
+  { "name": "Rohit", "designation": "Analyst", "department": "DS", "salary": 60000, "image": "https://via.placeholder.com/80?text=R" },
+  { "name": "Neha", "designation": "Tester", "department": "QA", "salary": 45000, "image": "https://via.placeholder.com/80?text=N" }
+]

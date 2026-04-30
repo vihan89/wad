@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="userApp">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Angular User App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body ng-controller="UserCtrl">
+  <div class="page">
+    <h1>User Registration, Login, Profile</h1>
+
+    <div class="grid">
+      <section>
+        <h2>Register</h2>
+        <input ng-model="reg.name" placeholder="Name" />
+        <input ng-model="reg.email" placeholder="Email" />
+        <input ng-model="reg.username" placeholder="Username" />
+        <input ng-model="reg.password" type="password" placeholder="Password" />
+        <button ng-click="register()">Register</button>
+        <p class="msg">{{regMsg}}</p>
+      </section>
+
+      <section>
+        <h2>Login</h2>
+        <input ng-model="login.username" placeholder="Username" />
+        <input ng-model="login.password" type="password" placeholder="Password" />
+        <button ng-click="loginUser()">Login</button>
+        <p class="msg">{{loginMsg}}</p>
+      </section>
+
+      <section>
+        <h2>Profile</h2>
+        <div ng-if="currentUser">
+          <p><strong>Name:</strong> {{currentUser.name}}</p>
+          <p><strong>Email:</strong> {{currentUser.email}}</p>
+          <p><strong>Username:</strong> {{currentUser.username}}</p>
+        </div>
+        <p ng-if="!currentUser">Login to see profile.</p>
+      </section>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

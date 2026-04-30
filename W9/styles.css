@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: #eaf3ff;
+}
+.page {
+  max-width: 500px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+.search { display: flex; gap: 8px; }
+input { flex: 1; padding: 10px; }
+button { padding: 10px 14px; }
+.card {
+  margin-top: 16px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  min-height: 80px;
+}

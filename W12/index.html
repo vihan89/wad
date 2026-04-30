@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Angular To-Do</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body ng-controller="TodoCtrl">
+  <div class="page">
+    <h1>To-Do (Angular Binding)</h1>
+
+    <div class="row">
+      <input ng-model="newTask" placeholder="New task" />
+      <button ng-click="addTask()">Add</button>
+    </div>
+
+    <ul>
+      <li ng-repeat="t in tasks">
+        <input ng-model="t.text" />
+        <button ng-click="removeTask($index)">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

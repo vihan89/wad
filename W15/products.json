@@ -1,0 +1,5 @@
+[
+  { "name": "Headphones", "price": "INR 7999", "image": "https://via.placeholder.com/120?text=HP" },
+  { "name": "Smartwatch", "price": "INR 12999", "image": "https://via.placeholder.com/120?text=SW" },
+  { "name": "Mouse", "price": "INR 2499", "image": "https://via.placeholder.com/120?text=GM" }
+]
