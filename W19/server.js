@@ -66,8 +66,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/setup", async (req, res) => {
-  await withCollection((col) => col.insertMany(students));
-  res.send("Inserted student documents.");
+  await withCollection(async (col) => {
+    await col.deleteMany({});
+    await col.insertMany(students);
+  });
+  res.send("Reset and inserted student documents.");
 });
 
 app.get("/all", async (req, res) => {
