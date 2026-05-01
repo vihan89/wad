@@ -72,6 +72,10 @@ registerBtn.addEventListener("click", async () => {
 });
 
 loginBtn.addEventListener("click", () => {
+  if (!loginUser.value.trim() || !loginPass.value.trim()) {
+    loginMsg.textContent = "Username and password required.";
+    return;
+  }
   const users = getUsers();
   const found = users.find(
     (u) => u.username === loginUser.value.trim() && u.password === loginPass.value.trim()

@@ -2,35 +2,42 @@ const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
 
-function serverGet() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const data = JSON.parse(localStorage.getItem("tasks") || "[]");
-      resolve(data);
-    }, 200);
+async function serverGet() {
+  const res = await fetch("/api/tasks");
+  return res.json();
+}
+
+async function serverAdd(text) {
+  await fetch("/api/tasks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text })
   });
 }
 
-function serverSave(tasks) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-      resolve(true);
-    }, 200);
+async function serverUpdate(id, text) {
+  await fetch(`/api/tasks/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text })
   });
+}
+
+async function serverDelete(id) {
+  await fetch(`/api/tasks/${id}`, { method: "DELETE" });
 }
 
 async function render() {
   const tasks = await serverGet();
   taskList.innerHTML = "";
 
-  tasks.forEach((t, index) => {
+  tasks.forEach((t) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      <span>${t}</span>
+      <span>${t.text}</span>
       <span>
-        <button data-edit="${index}">Edit</button>
-        <button data-del="${index}">Delete</button>
+        <button data-edit="${t.id}">Edit</button>
+        <button data-del="${t.id}">Delete</button>
       </span>
     `;
     taskList.appendChild(li);
@@ -41,9 +48,7 @@ addBtn.addEventListener("click", async () => {
   const text = taskInput.value.trim();
   if (!text) return;
 
-  const tasks = await serverGet();
-  tasks.push(text);
-  await serverSave(tasks);
+  await serverAdd(text);
   taskInput.value = "";
   render();
 });
@@ -53,19 +58,15 @@ taskList.addEventListener("click", async (e) => {
   const delIndex = e.target.dataset.del;
 
   if (editIndex !== undefined) {
-    const tasks = await serverGet();
-    const newText = prompt("Update task", tasks[editIndex]);
+    const newText = prompt("Update task");
     if (newText) {
-      tasks[editIndex] = newText;
-      await serverSave(tasks);
+      await serverUpdate(editIndex, newText);
       render();
     }
   }
 
   if (delIndex !== undefined) {
-    const tasks = await serverGet();
-    tasks.splice(delIndex, 1);
-    await serverSave(tasks);
+    await serverDelete(delIndex);
     render();
   }
 });

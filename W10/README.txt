@@ -1,2 +1,3 @@
-This demo uses localStorage as a simple "server" with AJAX-like calls.
-Open index.html and add/edit/delete tasks.
+Run:
+1) node server.js
+2) Open http://localhost:3008

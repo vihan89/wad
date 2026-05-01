@@ -44,6 +44,11 @@ function toTable(docs) {
   `;
 }
 
+function toNameList(docs) {
+  const items = docs.map((d) => `<li>${d.Name}</li>`).join("");
+  return `<ul>${items}</ul>`;
+}
+
 app.get("/", (req, res) => {
   res.send(`
     <h2>Student DB Tasks</h2>
@@ -72,7 +77,7 @@ app.get("/all", async (req, res) => {
 
 app.get("/dsbda", async (req, res) => {
   const docs = await withCollection((col) => col.find({ DSBDA_Marks: { $gt: 20 } }).toArray());
-  res.send(toTable(docs));
+  res.send(toNameList(docs));
 });
 
 app.get("/update/:roll", async (req, res) => {
@@ -92,12 +97,12 @@ app.get("/all-above-25", async (req, res) => {
     CNS_Marks: { $gt: 25 },
     AI_marks: { $gt: 25 }
   }).toArray());
-  res.send(toTable(docs));
+  res.send(toNameList(docs));
 });
 
 app.get("/low-math-science", async (req, res) => {
   const docs = await withCollection((col) => col.find({ WAD_Marks: { $lt: 40 }, CNS_Marks: { $lt: 40 } }).toArray());
-  res.send(toTable(docs));
+  res.send(toNameList(docs));
 });
 
 app.get("/delete/:roll", async (req, res) => {
