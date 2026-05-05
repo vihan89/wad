@@ -54,10 +54,27 @@ registerBtn.addEventListener("click", async () => {
   }
 
   const users = getUsers();
+  const nameValueRaw = nameInput.value.trim();
+  const emailValueRaw = email.value.trim();
+  const mobileValue = mobile.value.trim();
+  const nameValue = nameValueRaw.toLowerCase();
+  const emailValue = emailValueRaw.toLowerCase();
+  const duplicate = users.find((u) => {
+    const userName = (u.name || "").trim().toLowerCase();
+    const userEmail = (u.email || "").trim().toLowerCase();
+    const userMobile = (u.mobile || "").trim();
+    return userName === nameValue || userEmail === emailValue || userMobile === mobileValue;
+  });
+
+  if (duplicate) {
+    regMsg.textContent = "Duplicate name, email, or mobile not allowed.";
+    return;
+  }
+
   const newUser = {
-    name: nameInput.value.trim(),
-    email: email.value.trim(),
-    mobile: mobile.value.trim(),
+    name: nameValueRaw,
+    email: emailValueRaw,
+    mobile: mobileValue,
     dob: dob.value.trim(),
     city: city.value.trim(),
     address: address.value.trim(),
