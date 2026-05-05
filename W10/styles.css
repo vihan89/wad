@@ -5,3 +5,5 @@ body { font-family: Arial, Helvetica, sans-serif; background: #f6f7f9; margin: 0
 input { flex: 1; padding: 10px; }
 button { padding: 10px 12px; }
 li { list-style: none; background: #fff; margin-top: 8px; padding: 8px; border: 1px solid #ddd; display: flex; justify-content: space-between; }
+.actions { display: inline-flex; gap: 6px; }
+.task-done span:first-child { text-decoration: line-through; color: #7a7a7a; }

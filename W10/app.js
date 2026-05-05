@@ -23,6 +23,14 @@ async function serverUpdate(id, text) {
   });
 }
 
+async function serverToggle(id, done) {
+  await fetch(`/api/tasks/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ done })
+  });
+}
+
 async function serverDelete(id) {
   await fetch(`/api/tasks/${id}`, { method: "DELETE" });
 }
@@ -33,10 +41,12 @@ async function render() {
 
   tasks.forEach((t) => {
     const li = document.createElement("li");
+    li.className = t.done ? "task-done" : "";
     li.innerHTML = `
       <span>${t.text}</span>
-      <span>
-        <button data-edit="${t.id}">Edit</button>
+      <span class="actions">
+        <button data-toggle="${t.id}">${t.done ? "Undo" : "Complete"}</button>
+        <button data-edit="${t.id}">Update</button>
         <button data-del="${t.id}">Delete</button>
       </span>
     `;
@@ -56,13 +66,21 @@ addBtn.addEventListener("click", async () => {
 taskList.addEventListener("click", async (e) => {
   const editIndex = e.target.dataset.edit;
   const delIndex = e.target.dataset.del;
+  const toggleIndex = e.target.dataset.toggle;
 
   if (editIndex !== undefined) {
-    const newText = prompt("Update task");
+    const currentText = e.target.closest("li").querySelector("span").textContent;
+    const newText = prompt("Update task", currentText);
     if (newText) {
       await serverUpdate(editIndex, newText);
       render();
     }
+  }
+
+  if (toggleIndex !== undefined) {
+    const isDone = e.target.textContent === "Undo";
+    await serverToggle(toggleIndex, !isDone);
+    render();
   }
 
   if (delIndex !== undefined) {

@@ -57,17 +57,19 @@ registerBtn.addEventListener("click", async () => {
   const nameValueRaw = nameInput.value.trim();
   const emailValueRaw = email.value.trim();
   const mobileValue = mobile.value.trim();
+  const usernameValueRaw = regUser.value.trim();
   const nameValue = nameValueRaw.toLowerCase();
   const emailValue = emailValueRaw.toLowerCase();
+  const usernameValue = usernameValueRaw.toLowerCase();
   const duplicate = users.find((u) => {
-    const userName = (u.name || "").trim().toLowerCase();
+    const userName = (u.username || "").trim().toLowerCase();
     const userEmail = (u.email || "").trim().toLowerCase();
     const userMobile = (u.mobile || "").trim();
-    return userName === nameValue || userEmail === emailValue || userMobile === mobileValue;
+    return userName === usernameValue || userEmail === emailValue || userMobile === mobileValue;
   });
 
   if (duplicate) {
-    regMsg.textContent = "Duplicate name, email, or mobile not allowed.";
+    regMsg.textContent = "Duplicate username, email, or mobile not allowed.";
     return;
   }
 
@@ -78,7 +80,7 @@ registerBtn.addEventListener("click", async () => {
     dob: dob.value.trim(),
     city: city.value.trim(),
     address: address.value.trim(),
-    username: regUser.value.trim(),
+    username: usernameValueRaw,
     password: regPass.value.trim()
   };
 

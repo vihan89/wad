@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
 
   if (req.url === "/api/tasks" && req.method === "POST") {
     return readBody(req, (body) => {
-      const task = { id: Date.now().toString(), text: body.text || "" };
+      const task = { id: Date.now().toString(), text: body.text || "", done: false };
       data.push(task);
       sendJson(res, 200, task);
     });
@@ -50,7 +50,10 @@ const server = http.createServer((req, res) => {
     const id = req.url.split("/").pop();
     return readBody(req, (body) => {
       const task = data.find((t) => t.id === id);
-      if (task) task.text = body.text || task.text;
+      if (task) {
+        if (typeof body.text === "string") task.text = body.text || task.text;
+        if (typeof body.done === "boolean") task.done = body.done;
+      }
       sendJson(res, 200, { ok: true });
     });
   }

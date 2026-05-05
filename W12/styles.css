@@ -1,7 +1,9 @@
 * { box-sizing: border-box; }
 body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: #f6f7f9; }
 .page { max-width: 500px; margin: 32px auto; padding: 0 16px; }
-.row { display: flex; gap: 8px; }
+.row { display: flex; gap: 8px; align-items: center; }
 input { flex: 1; padding: 8px; }
 button { padding: 8px 12px; }
-li { list-style: none; margin-top: 8px; display: flex; gap: 8px; }
+li { list-style: none; margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.task-done { text-decoration: line-through; color: #7a7a7a; }
+.actions { display: inline-flex; gap: 6px; }

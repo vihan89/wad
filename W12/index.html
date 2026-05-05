@@ -18,8 +18,12 @@
 
     <ul>
       <li ng-repeat="t in tasks">
-        <input ng-model="t.text" />
-        <button ng-click="removeTask($index)">Delete</button>
+        <span ng-class="{ 'task-done': t.done }">{{t.text}}</span>
+        <span class="actions">
+          <button ng-click="toggleTask(t)">{{t.done ? 'Undo' : 'Complete'}}</button>
+          <button ng-click="updateTask(t)">Update</button>
+          <button ng-click="removeTask($index)">Delete</button>
+        </span>
       </li>
     </ul>
   </div>
