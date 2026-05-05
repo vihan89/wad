@@ -34,16 +34,16 @@ function validateRegistration() {
   return "";
 }
 
-async function ajaxPost(data) {
-  try {
-    await fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-  } catch (err) {
-    // Ignore network errors for offline practice.
-  }
+function ajaxPost(data, onSuccess) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "/output", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onload = function () {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      onSuccess(xhr.responseText);
+    }
+  };
+  xhr.send(JSON.stringify(data));
 }
 
 registerBtn.addEventListener("click", async () => {
@@ -65,9 +65,14 @@ registerBtn.addEventListener("click", async () => {
     password: regPass.value.trim()
   };
 
-  await ajaxPost(newUser);
   users.push(newUser);
   saveUsers(users);
+  ajaxPost(users, (html) => {
+    const win = window.open("", "_blank");
+    if (win) {
+      win.document.write(html);
+    }
+  });
   regMsg.textContent = "Registered successfully.";
 });
 
